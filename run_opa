@@ -47,9 +47,9 @@ def main():
         time.sleep(0.1)
         try:
             content = urllib.urlopen(url).read()
-            match = re.search(r"<pre>(.*)</pre>", content)
+            match = re.search(r"<pre>(.*)</pre>", content, flags=re.DOTALL)
             if match:
-                print(HTMLParser().unescape(match.group(1)))
+                sys.stdout.write(HTMLParser().unescape(match.group(1)))
                 exc = None
                 break
         except IOError as e:
